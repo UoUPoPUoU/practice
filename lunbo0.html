@@ -63,7 +63,7 @@
     changeIH();*/
 
 
-
+//    move = setInterval(play,5000);
     function play() {
         num++;
         lunPics.style.left = -num * 100 + "%";
@@ -71,34 +71,58 @@
             lunPics.style.left = "0";
             num = 0;
         }
-
     }
 
-    //    move = setInterval(play,2000);
+
 
 
     left.onclick = function () {
+        clearInterval(move);
         num--;
         lunPics.style.left = num * 100 + "%";
-
         if (num < 0) {
             lunPics.style.left = -(lunPic.length-1) * 100+"%";
             num = lunPic.length - 1;
         }else {
-            lunPics.style.left = num * 100+"%";
+            lunPics.style.left = -num * 100 + "%";
         }
-
-        console.log("left");
-        console.log(num);
-
     };
     right.onclick = function () {
-//        clearInterval(move);
-
+        clearInterval(move);
         play();
         console.log("right");
-
     };
+
+//    right.addEventListener("mouseout",function () {
+//        move = setInterval(play,2000);
+//
+//    });
+//    left.addEventListener("mouseout",function () {
+//        move = setInterval(play,2000);
+//
+//    })
+
+
+    /*这是封装的*/
+    function clickListen(eleArr,clickType,fun) {
+        for(var key in eleArr){
+            document.querySelector(eleArr[key]).addEventListener(clickType,fun);
+        }
+    }
+    /*这是你要绑定的同一个函数*/
+    function clickEvent(){
+        console.log('val');
+    }
+    /*参数说明:绑定的元素   绑定的时间   回调的函数*/
+    clickListen(['.left','.right'],'mouseout',function () {
+        move = setInterval(play,5000);
+    });
+
+    for(var key in ['.left','.right']){
+//        document.querySelector(['.left','.right'][key]);
+        console.log(['.left','.right'][key]);
+    }
+
 
 
 </script>
