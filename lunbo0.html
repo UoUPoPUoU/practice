@@ -11,20 +11,96 @@
 <div class="lun-box">
     <div class="left"></div>
     <div class="right"></div>
-    <div class="lun-pic">
-        <div><img src="images/0.jpg" alt=""></div>
-        <div><img src="images/1.jpg" alt=""></div>
-        <div><img src="images/2.jpg" alt=""></div>
+    <div class="lun-pics clear" style="left: 0;">
+        <div class="lun-pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+        <div class="lun-pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+        <div class="lun-pic">
+            <img src="images/2.jpg" alt="">
+        </div>
     </div>
-   <!-- <ul class="dot">
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>-->
+    <!-- <ul class="dot">
+         <li></li>
+         <li></li>
+         <li></li>
+     </ul>-->
 
 
 </div>
 
 
+<script>
+
+
+    var lunPics = document.getElementsByClassName("lun-pics")[0];
+    var lunPic = document.getElementsByClassName("lun-pic");
+    var left = document.getElementsByClassName("left")[0],
+        right = document.getElementsByClassName("right")[0];
+    var num = 0;
+    var move;
+
+    /*
+    var h1 = lunPic[0].offsetHeight;
+    var img = lunPic[0].getElementsByTagName("img")[0];
+    var h2 = img.offsetHeight;
+    var marginT = h1 / 2 - h2 / 2 + "px";
+
+    console.log(img);
+        window.onresize = function () {
+            changeIH();
+        };
+
+    function changeIH() {
+        for (var i = 0; i < lunPic.length; i++) {
+            if (lunPic[i].getElementsByTagName("img")) {
+                img.style.marginTop = marginT;
+            }
+        }
+    }
+    changeIH();*/
+
+
+
+    function play() {
+        num++;
+        lunPics.style.left = -num * 100 + "%";
+        if (num > lunPic.length - 1) {
+            lunPics.style.left = "0";
+            num = 0;
+        }
+
+    }
+
+    //    move = setInterval(play,2000);
+
+
+    left.onclick = function () {
+        num--;
+        lunPics.style.left = num * 100 + "%";
+
+        if (num < 0) {
+            lunPics.style.left = -(lunPic.length-1) * 100+"%";
+            num = lunPic.length - 1;
+        }else {
+            lunPics.style.left = num * 100+"%";
+        }
+
+        console.log("left");
+        console.log(num);
+
+    };
+    right.onclick = function () {
+//        clearInterval(move);
+
+        play();
+        console.log("right");
+
+    };
+
+
+</script>
 </body>
 </html>
